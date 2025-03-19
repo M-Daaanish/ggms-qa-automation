@@ -1,3 +1,5 @@
+import { sign } from "crypto";
+import { hasUncaughtExceptionCaptureCallback } from "process";
 import SignInPage from "../../support/pages/sign-in-page";
 
 // Test suite for Sign In functionality
@@ -19,13 +21,11 @@ describe("GGMS - SIGN IN TEST SUIT", () => {
   // Attempting login with valid credentials
 
   it("User should be able to login successfully", () => {
-
     // Entering email address and password
     signInPage.login(userData.emailAddress, userData.password);
     // Verifying successful navigation to the dashboard
     cy.url().should("include", "/dashboard");
   });
-  
 
   // Attempting login with invalid email address and valid password
   it("User should not be allowed to login with an invalid email address", () => {
@@ -68,8 +68,7 @@ describe("GGMS - SIGN IN TEST SUIT", () => {
       .should("have.text", " Email and password are required");
   });
 
-
- // Verify hide & unhide password option on password input field 
+  // Verify hide & unhide password option on password input field
   it("Verify hide/unhide password", () => {
     // Checking password field is initially masked
     signInPage.getPasswordField().should("have.attr", "type", "password");
@@ -79,7 +78,33 @@ describe("GGMS - SIGN IN TEST SUIT", () => {
     signInPage.getPasswordField().should("have.attr", "type", "text");
   });
 
-  it.only("Verify recover password in sign-in", () => {
-    signInPage.getForgotPasswordLink().should('be.visible').should('have.text', 'Recover Password ')
-  })
+  // Verify recover password visibility and text
+  it("Verify recover password in sign-in", () => {
+    signInPage
+      .getForgotPasswordLink()
+      .should("be.visible")
+      .invoke("text")
+      .then((buttonTxt) => {
+        // Trimming the text as DOM element is containing empty spacing
+        const trimmedBtnTxt = buttonTxt.trim();
+        // Apply assertion on button text
+        expect(trimmedBtnTxt).to.eq("Recover Password");
+      });
+  });
+
+  // Verify Google account button visibility
+  it("Verify google account button visibility", () => {
+
+    // Get google account button and check it's visibility
+    signInPage.getGoogleAccountButton().should("be.visible");
+    
+  });
+
+  // Verify user navigation to recover password screen
+  it("Verify user navigation to recover password screen", () => {
+    // Clicking on recover password option on sign-in page
+    signInPage.getForgotPasswordLink().click();
+    // Getting current url and applying assertion on it
+    cy.url().should("include", "/recover-password");
+  });
 });
