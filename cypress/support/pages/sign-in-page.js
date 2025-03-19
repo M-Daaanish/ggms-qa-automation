@@ -38,6 +38,12 @@ class SignInPage {
         return cy.get('.showpass');
     }
 
+    // Returns Google account button 
+    getGoogleAccountButton(){
+        return cy.get('#google_oauth');
+    }
+
+
     // Actions - Methods to perform actions on the sign-in page
     
     // Navigates to the login page
