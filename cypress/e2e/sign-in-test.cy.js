@@ -1,6 +1,6 @@
 import { sign } from "crypto";
 import { hasUncaughtExceptionCaptureCallback } from "process";
-import SignInPage from "../../support/pages/sign-in-page";
+import SignInPage from "../support/pages/sign-in-page";
 
 // Test suite for Sign In functionality
 describe("GGMS - SIGN IN TEST SUIT", () => {
@@ -11,7 +11,7 @@ describe("GGMS - SIGN IN TEST SUIT", () => {
 
   beforeEach(() => {
     // Visiting the sign-in page before each test
-    cy.visit("/");
+    signInPage.visit()
     // Loading user data from fixture
     cy.fixture("sign-in").then((data) => {
       userData = data;
