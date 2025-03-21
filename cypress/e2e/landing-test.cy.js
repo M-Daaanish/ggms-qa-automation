@@ -64,7 +64,7 @@ describe('Landing page test suite', () => {
     });
 
     // Verify user cannot navigate to listing page without location selection
-    it.only("Verify user cannot go to listing page without selecting location", () => {
+    it("Verify user cannot go to listing page without selecting location", () => {
         landingPage.search()
         landingPage.getLocation().should('have.class', 'alert')
         landingPage.toastWarning().should('include', ' This field is required')
