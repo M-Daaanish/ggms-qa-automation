@@ -1,0 +1,6 @@
+{
+   "propertyLocation": "Orlando",
+   "sortValue": "priceLowToHigh", 
+   "_comment": "Sort value should be : newest, recommended, priceLowToHigh, priceHighToLow, squareFeet, lotSize, pricePerSqFt",
+   "selectedSortValue": "Price (low to high)"
+}
