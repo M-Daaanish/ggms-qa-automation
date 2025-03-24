@@ -48,7 +48,7 @@ class SignInPage {
     
     // Navigates to the login page
     visit() {
-        cy.visit('/login');
+        cy.visit('/sign-in');
     }
 
     // Performs login with provided username and password
