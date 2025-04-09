@@ -1,4 +1,4 @@
-import { execPath, hasUncaughtExceptionCaptureCallback } from "process";
+
 import LandingPage from "../support/pages/landing-page";
 
 describe('Landing page test suite', () => {
