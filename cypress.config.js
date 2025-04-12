@@ -1,9 +1,19 @@
 const { defineConfig } = require("cypress");
+const { allureCypress } = require("allure-cypress/reporter");
 
 module.exports = defineConfig({
+  projectId: 'qp4x8d',
   e2e: {
+
     setupNodeEvents(on, config) {
       // implement node event listeners here
+     
+      
+      allureCypress(on, config, {
+        resultsDir: "allure-results"
+       
+      });
+      return config;
     },
     
       "baseUrl": "https://mergestack-com.site-dev.ggms.com/",
@@ -13,6 +23,9 @@ module.exports = defineConfig({
       "screenshotsFolder": "cypress/screenshots",
       "videosFolder": "cypress/videos"
       
+      
     
-  },
+  }
+  
+ 
 });

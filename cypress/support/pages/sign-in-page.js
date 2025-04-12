@@ -1,63 +1,72 @@
-// Class representing the Sign In Page
+// ✅ Class representing the Sign-In Page
 class SignInPage {
-    
-    // Elements - Methods to get various elements on the sign-in page
-    
-    // Returns the email input field
+    /**
+     * ============================
+     * ELEMENT GETTERS
+     * ============================
+     * These methods return elements on the sign-in page
+     */
+  
+    // 📧 Email input field
     getUsernameField() {
-        return cy.get('input[type="email"]');
+      return cy.get('input[type="email"]');
     }
-
-    // Returns the password input field
+  
+    // 🔒 Password input field
     getPasswordField() {
-        return cy.get('input[placeholder="Password"]');
+      return cy.get('input[placeholder="Password"]');
     }
-
-    // Returns the login button
+  
+    // 🔘 Login button
     getLoginButton() {
-        return cy.get('#login-btn');
+      return cy.get('#login-btn');
     }
-
-    // Returns the error message element
+  
+    // ⚠️ Toast error message (e.g., incorrect login)
     getErrorMessage() {
-        return cy.get('.toast.warning > h5');
+      return cy.get('.toast.warning > h5');
     }
-
-    // Returns the 'Remember Me' checkbox
+  
+    // ☑️ "Remember Me" checkbox
     getRememberMeCheckbox() {
-        return cy.get('input[id="remember-me-checkbox"]');
+      return cy.get('input[id="remember-me-checkbox"]');
     }
-
-    // Returns the 'Forgot Password' link
+  
+    // 🔗 "Forgot Password" link
     getForgotPasswordLink() {
-        return cy.get('.btnrecover');
+      return cy.get('.btnrecover');
     }
-
-    // Returns the eye button for password visibility toggle
-    getPasswordEyeButton(){
-        return cy.get('.showpass');
+  
+    // 👁️ Password visibility toggle (eye icon)
+    getPasswordEyeButton() {
+      return cy.get('.showpass');
     }
-
-    // Returns Google account button 
-    getGoogleAccountButton(){
-        return cy.get('#google_oauth');
+  
+    // 🔐 Google OAuth login button
+    getGoogleAccountButton() {
+      return cy.get('#google_oauth');
     }
-
-
-    // Actions - Methods to perform actions on the sign-in page
-    
-    // Navigates to the login page
+  
+    /**
+     * ============================
+     * PAGE ACTIONS
+     * ============================
+     * These methods perform actions on the sign-in page
+     */
+  
+    // 🚪 Navigate to the Sign-In page
     visit() {
-        cy.visit('/sign-in');
+      cy.visit('/sign-in');
     }
-
-    // Performs login with provided username and password
+  
+    // 🔐 Log in using username and password
     login(username, password) {
-        this.getUsernameField().type(username);
-        this.getPasswordField().type(password);
-        this.getLoginButton().click();
+      this.getUsernameField().type(username);
+      this.getPasswordField().type(password);
+      this.getLoginButton().click();
     }
-}
-
-// Exporting the SignInPage class for reuse
-export default SignInPage;
+  }
+  
+  // Export the SignInPage class for reuse in test specs
+  export default SignInPage;
+  
