@@ -9,7 +9,7 @@ class PropertySharedElements {
   // 🛠 Click on the 'All Filters' button
   // Consider parameterizing this if there are multiple filter buttons
   allFiltersButton() {
-    return cy.get(".filter-toggle").eq(1).click({ force: true });
+    return cy.get(".filter-toggle").click({ force: true });
   }
 
   // 🛠 Search and select a location from the suggestions
@@ -117,9 +117,10 @@ class PropertySharedElements {
   saveSearch() {
     return cy.get('div[id="advance-search-search-btn"]').click()
   }
-  // ✅ Get save search location error message
-  saveSearchLocationError() {
-    return cy.get('.alertmodal > div > h5 > span').contains('Location is mandatory to apply filter!',{timeout:60000})
+  
+  // ✅ Get save search success message 
+  saveSearchSuccessMessage() {
+    return cy.get('.alertmodal > div > h5 > span').contains('Search saved successfully!',{timeout:60000})
   }
 
 
