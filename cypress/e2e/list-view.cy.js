@@ -116,6 +116,11 @@ describe('Listing Page - Logged-In User', () => {
 
 beforeEach(() => {
   cy.visitSignIn();
+    // Load test data from fixture
+  cy.fixture("listing-page-data").then((data) => {
+      listingPageData = data;
+    });
+    // Load Login test data from fixture
   cy.fixture("sign-in").then((data) => {
     cy.login(data.emailAddress, data.password)
   });
@@ -124,15 +129,18 @@ beforeEach(() => {
 })
 
 
-  /**
-   * ✅ Test: Save Search wihtout location
-   * - Select a sort option
-   * - Verify the selected value is reflected in UI
+ 
+
+ /**
+   * ✅ Test: Save Search Successfully with location
+   * - Select a location and click save search button
+   * - Verify the save search success message
    */
 
-  it.only("Should not allow the user to save search without location", () => {
+  it("Should allow the user to save search with location", () => {
+    sharedElements.typeLocation(listingPageData.propertyLocation);
     sharedElements.saveSearch();
-    sharedElements.saveSearchLocationError().should('be.visible');
+    sharedElements.saveSearchSuccessMessage().should('be.visible');
   })
 
 
