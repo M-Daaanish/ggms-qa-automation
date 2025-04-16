@@ -104,12 +104,12 @@ class PropertySharedElements {
 
 
   // 🛠 Click on map view toggle
-  mapView() {
+  mapToggle() {
     return cy.get("#map-list-switch > label").contains("Map").click(); // 🔁 Added .click()
   }
 
   // 🛠 Click on list view toggle
-  listView() {
+  listToggle() {
     return cy.get("#map-list-switch > label").contains("List").click(); // 🔁 Added .click()
   }
 
