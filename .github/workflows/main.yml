@@ -25,13 +25,6 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
-
-      - name: Upload Reports
-         uses: actions/uploadartifact@v3
-         with: 
-            name: mochawesome-reports
-            path: mochawesome-reports
-
       - name: Slack Notification
         if: always()  # Always send (success or fail)
         run: |
