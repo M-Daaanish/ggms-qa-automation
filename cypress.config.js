@@ -22,7 +22,8 @@ module.exports = defineConfig({
       "viewportHeight": 1080,
       "video": true,
       "screenshotsFolder": "cypress/screenshots",
-      "videosFolder": "cypress/videos"
+      "videosFolder": "cypress/videos",
+      "reporter": "cypress-mochawesome-reporter"
       
       
     
