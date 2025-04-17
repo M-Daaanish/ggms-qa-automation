@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 const { allureCypress } = require("allure-cypress/reporter");
 
 module.exports = defineConfig({
-  projectId: 'qp4x8d',
+  projectId: 'qnni9m',
   
   e2e: {
 

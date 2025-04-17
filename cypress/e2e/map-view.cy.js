@@ -31,7 +31,9 @@ describe('🗺️ Map View — Test Suite', () => {
       .and('be.visible');                   // Ensure markers are visible
 
     // Verify that boundary polygon is drawn around the searched area
-    mapPage.boundaryPolygon().should('exist'); // Assert that boundary is present
+   mapPage.boundaryPolygon().should('exist'); // Assert that boundary is present
+
+ 
   });
 
 });
