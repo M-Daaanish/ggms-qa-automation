@@ -25,12 +25,12 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
-      - name: Slack Notification
-        if: always()  # Always send (success or fail)
-        run: |
+
+     - name: Slack Notification (No jq)
+       if: always()
+       run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data '{
-            "text": ":rocket: GitHub Action triggered by *${{ github.actor }}* on `${{ github.repository }}` branch `${{ github.ref_name }}`.\nStatus: ${{ job.status }}\n[Open Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-          }' $SLACK_WEBHOOK_URL
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          --data "{\"text\": \":rocket: GitHub Action triggered by *${{ github.actor }}* on \\\`${{ github.repository }}\\\` branch \\\`${{ github.ref_name }}\\\`. Status: ${{ job.status }}. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Open Run>\"}" \
+          $SLACK_WEBHOOK_URL
+      env:
+         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
