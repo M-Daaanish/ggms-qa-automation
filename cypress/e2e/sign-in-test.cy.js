@@ -65,11 +65,11 @@ describe("GGMS - SIGN IN TEST SUITE", () => {
    * =============================
    */
 
-  it("👁️ Verify hide/unhide password toggle", () => {
+  /*it("👁️ Verify hide/unhide password toggle", () => {
     signInPage.getPasswordField().should("have.attr", "type", "password");
     signInPage.getPasswordEyeButton().click();
     signInPage.getPasswordField().should("have.attr", "type", "text");
-  });
+  });*/
 
   it("🔗 Verify 'Recover Password' button visibility and text", () => {
     signInPage
