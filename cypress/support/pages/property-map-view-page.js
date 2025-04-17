@@ -16,8 +16,8 @@ propertyMarkers() {
   }
 
 boundaryPolygon() {
-    return cy.get('.gm-style path, .gm-style-polygon, .leaflet-interactive');
-  }
+    return cy.get('.gm-style .leaflet-interactive, .gm-style-polygon, path');
+  } 
 
 }
 
