@@ -26,11 +26,20 @@ jobs:
       - name: Run Cypress tests
         run: npx cypress run
 
-      - name: Slack Notification (Safe Payload)
-        if: always()
+      - name: Slack Notification (Success)
+        if: success()
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\": \":rocket: GitHub Action triggered by *${{ github.actor }}* on '${{ github.repository }}' branch '${{ github.ref_name }}'. Status: ${{ job.status }}. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Open Run>\"}" \
+          --data "{\"text\": \":white_check_mark: Tests passed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>\"}" \
+          $SLACK_WEBHOOK_URL
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Slack Notification (Failure)
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\": \":x: Tests failed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>\"}" \
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
