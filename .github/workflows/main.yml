@@ -43,3 +43,16 @@ jobs:
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          
+      - name: Generate and Upload Report
+       run: | 
+         npx cypress run --reporter mochawesome
+        continue-on-error: true
+
+      - name: Upload Report
+         uses: actions/upload-artifact@v3
+         with:
+          name: test-report
+          path: cypress/reports/mochawesome.html
+
+ 
