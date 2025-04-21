@@ -2,9 +2,7 @@
 A scalable, maintainable, and customizable automation framework built with Cypress for end-to-end testing.
 
 📁 Project Structure
-bash
-Copy
-Edit
+
 ├── cypress/
 │   ├── e2e/
 │   ├── fixtures/
