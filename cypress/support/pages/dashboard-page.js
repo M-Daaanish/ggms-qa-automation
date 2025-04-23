@@ -7,7 +7,7 @@ class Dashboard {
 
     // ✅ Returns the logged-in user's name by extracting text from the userName element
     getUserName() {
-        return cy.get('#userName').invoke('text');
+        return cy.get('#userName');
     }
 
     // ✅ Clicks the Edit button on the user's profile card
