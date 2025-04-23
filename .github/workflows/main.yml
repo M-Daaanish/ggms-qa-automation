@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests
-        run: npx cypress run
+      - name: Run Cypress tests with Mochawesome reporter
+        run: npx cypress run --reporter mochawesome
 
       - name: Slack Notification (Success)
         if: success()
@@ -44,13 +44,3 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      - name: Generate and Upload Report
-        run: |
-          npx cypress run --reporter mochawesome
-        continue-on-error: true
-
-      - name: Upload Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-report
-          path: cypress/reports/mochawesome.html
