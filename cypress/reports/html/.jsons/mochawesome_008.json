@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-05-19T07:08:35.957Z",
+    "end": "2025-05-19T07:09:07.463Z",
+    "duration": 31506,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e5089ce0-fd25-4ab2-b812-a0bbf82acaf5",
+      "title": "",
+      "fullFile": "cypress/e2e/dashboard-test.cy.js",
+      "file": "cypress/e2e/dashboard-test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "75ba4300-4c01-4d29-923a-e1d5f16a4826",
+          "title": "👤 Authenticated User — Dashboard Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should display the correct user name on the dashboard",
+              "fullTitle": "👤 Authenticated User — Dashboard Test Suite should display the correct user name on the dashboard",
+              "timedOut": null,
+              "duration": 15289,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// 💡 Optional: use `contain.text` if there's formatting around the name\ndashboardPage.getUserName().should('have.text', 'Danish Mustafa');",
+              "err": {},
+              "uuid": "a8f4cc83-c2fd-4200-9821-36110c323dd1",
+              "parentUUID": "75ba4300-4c01-4d29-923a-e1d5f16a4826",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display the Saved Properties section",
+              "fullTitle": "👤 Authenticated User — Dashboard Test Suite should display the Saved Properties section",
+              "timedOut": null,
+              "duration": 4499,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "dashboardPage.getOptionCard(section).should('be.visible');",
+              "err": {},
+              "uuid": "49ecae62-77ed-47e0-af8d-bbe78256675b",
+              "parentUUID": "75ba4300-4c01-4d29-923a-e1d5f16a4826",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display the Hidden Properties section",
+              "fullTitle": "👤 Authenticated User — Dashboard Test Suite should display the Hidden Properties section",
+              "timedOut": null,
+              "duration": 4074,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "dashboardPage.getOptionCard(section).should('be.visible');",
+              "err": {},
+              "uuid": "510857a7-9c13-40a6-a73d-6b4b8949fc19",
+              "parentUUID": "75ba4300-4c01-4d29-923a-e1d5f16a4826",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display the Saved Searches section",
+              "fullTitle": "👤 Authenticated User — Dashboard Test Suite should display the Saved Searches section",
+              "timedOut": null,
+              "duration": 4597,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "dashboardPage.getOptionCard(section).should('be.visible');",
+              "err": {},
+              "uuid": "775cfeb1-1458-4255-a0ed-8f6525a6fa1d",
+              "parentUUID": "75ba4300-4c01-4d29-923a-e1d5f16a4826",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a8f4cc83-c2fd-4200-9821-36110c323dd1",
+            "49ecae62-77ed-47e0-af8d-bbe78256675b",
+            "510857a7-9c13-40a6-a73d-6b4b8949fc19",
+            "775cfeb1-1458-4255-a0ed-8f6525a6fa1d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 28459,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "c4bf7a7f-882b-470c-83d7-8bae743c0d3b",
+          "title": "🚫 Guest User — Dashboard Access Restriction",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should redirect unauthenticated user to sign-in page",
+              "fullTitle": "🚫 Guest User — Dashboard Access Restriction should redirect unauthenticated user to sign-in page",
+              "timedOut": null,
+              "duration": 2915,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.url().should('include', '/sign-in');",
+              "err": {},
+              "uuid": "d51598ae-1d4b-4200-9036-bed00d13396b",
+              "parentUUID": "c4bf7a7f-882b-470c-83d7-8bae743c0d3b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d51598ae-1d4b-4200-9036-bed00d13396b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2915,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

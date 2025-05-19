@@ -142,7 +142,10 @@ beforeEach(() => {
   it("Should allow the user to save search with location", () => {
     sharedElements.typeLocation(listingPageData.propertyLocation);
     sharedElements.saveSearch();
-    sharedElements.saveSearchSuccessMessage().should('be.visible');
+    sharedElements.savedSearchText().then(text => {
+    let  savedSearchText = text.trim()
+      expect(savedSearchText).to.be.eq('Search saved')
+    })
   })
 
 

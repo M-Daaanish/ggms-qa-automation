@@ -113,15 +113,16 @@ class PropertySharedElements {
     return cy.get("#map-list-switch > label").contains("List").click(); // 🔁 Added .click()
   }
 
-  // 🛠 Click on Save search button 
+  // Click save search button 
   saveSearch() {
-    return cy.get('div[id="advance-search-search-btn"]').click()
+    return cy.get(".saved-search-btn-default").click();
   }
-  
-  // ✅ Get save search success message 
-  saveSearchSuccessMessage() {
-    return cy.get('.alertmodal > div > h5 > span').contains('Search saved successfully!',{timeout:60000})
+
+  // Get Saved Search Text
+  savedSearchText() {
+    return cy.get('.saved-search-btn-default.active').invoke('text')
   }
+
 
 
 }
