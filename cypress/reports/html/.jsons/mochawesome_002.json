@@ -1,0 +1,229 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 6,
+    "passes": 4,
+    "pending": 0,
+    "failures": 2,
+    "start": "2025-05-18T11:09:38.865Z",
+    "end": "2025-05-18T11:10:42.661Z",
+    "duration": 63796,
+    "testsRegistered": 6,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9991600c-fa92-4a94-b989-9d47c35fae41",
+      "title": "",
+      "fullFile": "cypress/e2e/list-view.cy.js",
+      "file": "cypress/e2e/list-view.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "026d6b81-ab70-4976-94b2-8696395d531b",
+          "title": "🏠 Listing Page Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should display listings based on the location selected by the user",
+              "fullTitle": "🏠 Listing Page Test Suite should display listings based on the location selected by the user",
+              "timedOut": null,
+              "duration": 19085,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.typeLocation(listingPageData.propertyLocation);\n// Wait for listings to render (consider replacing with intercept in future)\ncy.wait(2000);\nsharedElements.propertyAddress().each($address => {\n  const addressText = $address.text().toLowerCase();\n  expect(addressText).to.include(listingPageData.propertyLocation.toLowerCase());\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 5000ms: Expected to find element: `.aptcard__content--address`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 5000ms: Expected to find element: `.aptcard__content--address`, but never found it.\n    at PropertySharedElements.propertyAddress (webpack://ggmstestautomation/./cypress/support/pages/property-shared-elements.js:6:14)\n    at Context.eval (webpack://ggmstestautomation/./cypress/e2e/list-view.cy.js:38:7)",
+                "diff": null
+              },
+              "uuid": "2172b7b2-3b34-42cb-a386-eab55566ae55",
+              "parentUUID": "026d6b81-ab70-4976-94b2-8696395d531b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should navigate to the last page using pagination controls",
+              "fullTitle": "🏠 Listing Page Test Suite should navigate to the last page using pagination controls",
+              "timedOut": null,
+              "duration": 20920,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.typeLocation(listingPageData.propertyLocation);\n// Wait for listings (replace with intercept in future)\ncy.wait(3000);\nsharedElements.navToLastPage();\nsharedElements.activePage().invoke(\"text\").then(activePageText => {\n  expect(Number(activePageText)).to.be.greaterThan(1); // Or compare with expected last page\n});",
+              "err": {
+                "message": "CypressError: Timed out retrying after 4050ms: `cy.last()` failed because the page updated as a result of this command, but you tried to continue the command chain. The subject is no longer attached to the DOM, and Cypress cannot requery the page after commands such as `cy.last()`.\n\nCommon situations why this happens:\n  - Your JS framework re-rendered asynchronously\n  - Your app code reacted to an event firing and removed the element\n\nYou can typically solve this by breaking up a chain. For example, rewrite:\n\n> `cy.get('button').click().should('have.class', 'active')`\n\nto\n\n> `cy.get('button').as('btn').click()`\n> `cy.get('@btn').should('have.class', 'active')`\n\nhttps://on.cypress.io/element-has-detached-from-dom",
+                "estack": "CypressError: Timed out retrying after 4050ms: `cy.last()` failed because the page updated as a result of this command, but you tried to continue the command chain. The subject is no longer attached to the DOM, and Cypress cannot requery the page after commands such as `cy.last()`.\n\nCommon situations why this happens:\n  - Your JS framework re-rendered asynchronously\n  - Your app code reacted to an event firing and removed the element\n\nYou can typically solve this by breaking up a chain. For example, rewrite:\n\n> `cy.get('button').click().should('have.class', 'active')`\n\nto\n\n> `cy.get('button').as('btn').click()`\n> `cy.get('@btn').should('have.class', 'active')`\n\nhttps://on.cypress.io/element-has-detached-from-dom\n    at isAttached (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:145692:58)\n    at validateType (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:145562:9)\n    at Object.isType (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:145597:7)\n    at Array.<anonymous> (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:135975:24)\n    at $Cy.getSubjectFromChain (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:139329:34)\n    at Object.subjectFn (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:111721:51)\n    at retryActionability (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:112423:27)\n    at tryCatcher (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:4285:29)\n    at whenStable (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:144478:68)\n    at <unknown> (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:144419:14)\n    at tryCatcher (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1671:18)\n    at Promise._fulfill (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1615:18)\n    at <unknown> (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:5420:46)",
+                "diff": null
+              },
+              "uuid": "ebfff324-602e-4fcc-90b2-60b005b98b50",
+              "parentUUID": "026d6b81-ab70-4976-94b2-8696395d531b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should sort listings based on the selected sort option",
+              "fullTitle": "🏠 Listing Page Test Suite should sort listings based on the selected sort option",
+              "timedOut": null,
+              "duration": 3950,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.sortOption(listingPageData.sortValue);\nsharedElements.getSortedValue().should(\"be.visible\").invoke(\"text\").then(selectedText => {\n  const trimmed = selectedText.trim();\n  expect(trimmed).to.eq(listingPageData.selectedSortValue);\n});",
+              "err": {},
+              "uuid": "def69a0c-caee-43bf-9398-35cb80bf2d3c",
+              "parentUUID": "026d6b81-ab70-4976-94b2-8696395d531b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should show sign-in modal when a guest user tries to favorite a listing",
+              "fullTitle": "🏠 Listing Page Test Suite should show sign-in modal when a guest user tries to favorite a listing",
+              "timedOut": null,
+              "duration": 3601,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.clickFavoriteIcon();\nsharedElements.signInModalBox().should(\"exist\").and(\"be.visible\");",
+              "err": {},
+              "uuid": "74256b47-1ff2-41cd-b14a-d3d87e744f47",
+              "parentUUID": "026d6b81-ab70-4976-94b2-8696395d531b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should not allow guest user to save search",
+              "fullTitle": "🏠 Listing Page Test Suite Should not allow guest user to save search",
+              "timedOut": null,
+              "duration": 5862,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.saveSearch();\nsharedElements.signInModalBox().should(\"exist\").and(\"be.visible\");",
+              "err": {},
+              "uuid": "7c99d892-0909-490a-b63f-62d98dac875d",
+              "parentUUID": "026d6b81-ab70-4976-94b2-8696395d531b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "def69a0c-caee-43bf-9398-35cb80bf2d3c",
+            "74256b47-1ff2-41cd-b14a-d3d87e744f47",
+            "7c99d892-0909-490a-b63f-62d98dac875d"
+          ],
+          "failures": [
+            "2172b7b2-3b34-42cb-a386-eab55566ae55",
+            "ebfff324-602e-4fcc-90b2-60b005b98b50"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 53418,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "50f85274-8dda-4a15-aa4b-58ed77dd07e7",
+          "title": "Listing Page - Logged-In User",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should allow the user to save search with location",
+              "fullTitle": "Listing Page - Logged-In User Should allow the user to save search with location",
+              "timedOut": null,
+              "duration": 10149,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.typeLocation(listingPageData.propertyLocation);\nsharedElements.saveSearch();\nsharedElements.savedSearchText().then(text => {\n  let savedSearchText = text.trim();\n  expect(savedSearchText).to.be.eq('Search saved');\n});",
+              "err": {},
+              "uuid": "b34337dd-5153-4736-9411-1458015434eb",
+              "parentUUID": "50f85274-8dda-4a15-aa4b-58ed77dd07e7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b34337dd-5153-4736-9411-1458015434eb"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10149,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

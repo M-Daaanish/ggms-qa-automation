@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-05-19T07:09:09.365Z",
+    "end": "2025-05-19T07:09:26.934Z",
+    "duration": 17569,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7b9432d1-72f5-45c5-91b8-e0af21e0c8e6",
+      "title": "",
+      "fullFile": "cypress/e2e/landing-test.cy.js",
+      "file": "cypress/e2e/landing-test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "225811e2-168b-44ae-af05-708b9c4db428",
+          "title": "Landing page test suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify user can see advance search widget on landing page",
+              "fullTitle": "Landing page test suite Verify user can see advance search widget on landing page",
+              "timedOut": null,
+              "duration": 9274,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "landingPage.advanceSearchWidget().should('be.visible');",
+              "err": {},
+              "uuid": "579b3196-33ca-4b58-be24-4e1809a76f37",
+              "parentUUID": "225811e2-168b-44ae-af05-708b9c4db428",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify user navigation on location selection",
+              "fullTitle": "Landing page test suite Verify user navigation on location selection",
+              "timedOut": null,
+              "duration": 8224,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "landingPage.typeLocation(landingPageTestData.propertyLocation);\ncy.url().should('include', `/listings/city/${landingPageTestData.propertyLocation}`);",
+              "err": {},
+              "uuid": "fb25c802-f9ae-4b35-884b-8852c4d45955",
+              "parentUUID": "225811e2-168b-44ae-af05-708b9c4db428",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "579b3196-33ca-4b58-be24-4e1809a76f37",
+            "fb25c802-f9ae-4b35-884b-8852c4d45955"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 17498,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

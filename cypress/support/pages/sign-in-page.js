@@ -9,7 +9,7 @@ class SignInPage {
   
     // 📧 Email input field
     getUsernameField() {
-      return cy.get('input[type="email"]');
+      return cy.get('input[type="email"]')
     }
   
     // 🔒 Password input field

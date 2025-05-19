@@ -1,0 +1,220 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-05-19T07:09:28.770Z",
+    "end": "2025-05-19T07:10:18.902Z",
+    "duration": 50132,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e9ef91e9-a745-4030-afb8-b4036308cbb7",
+      "title": "",
+      "fullFile": "cypress/e2e/list-view.cy.js",
+      "file": "cypress/e2e/list-view.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dada2e81-50f2-4247-ac65-22003a0369e9",
+          "title": "🏠 Listing Page Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should display listings based on the location selected by the user",
+              "fullTitle": "🏠 Listing Page Test Suite should display listings based on the location selected by the user",
+              "timedOut": null,
+              "duration": 17430,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.typeLocation(listingPageData.propertyLocation);\n// Wait for listings to render (consider replacing with intercept in future)\ncy.wait(2000);\nsharedElements.propertyAddress().each($address => {\n  const addressText = $address.text().toLowerCase();\n  expect(addressText).to.include(listingPageData.propertyLocation.toLowerCase());\n});",
+              "err": {},
+              "uuid": "e9ec1e7c-bd50-4b56-9fd5-bb512e5f6f46",
+              "parentUUID": "dada2e81-50f2-4247-ac65-22003a0369e9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should navigate to the last page using pagination controls",
+              "fullTitle": "🏠 Listing Page Test Suite should navigate to the last page using pagination controls",
+              "timedOut": null,
+              "duration": 12407,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.typeLocation(listingPageData.propertyLocation);\n// Wait for listings (replace with intercept in future)\ncy.wait(3000);\nsharedElements.navToLastPage();\nsharedElements.activePage().invoke(\"text\").then(activePageText => {\n  expect(Number(activePageText)).to.be.greaterThan(1); // Or compare with expected last page\n});",
+              "err": {},
+              "uuid": "876f4588-b80f-48c2-992a-166246aa0db2",
+              "parentUUID": "dada2e81-50f2-4247-ac65-22003a0369e9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should sort listings based on the selected sort option",
+              "fullTitle": "🏠 Listing Page Test Suite should sort listings based on the selected sort option",
+              "timedOut": null,
+              "duration": 3648,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.sortOption(listingPageData.sortValue);\nsharedElements.getSortedValue().should(\"be.visible\").invoke(\"text\").then(selectedText => {\n  const trimmed = selectedText.trim();\n  expect(trimmed).to.eq(listingPageData.selectedSortValue);\n});",
+              "err": {},
+              "uuid": "95b446e3-f441-4627-b771-458c49ed6f27",
+              "parentUUID": "dada2e81-50f2-4247-ac65-22003a0369e9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should show sign-in modal when a guest user tries to favorite a listing",
+              "fullTitle": "🏠 Listing Page Test Suite should show sign-in modal when a guest user tries to favorite a listing",
+              "timedOut": null,
+              "duration": 3082,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.clickFavoriteIcon();\nsharedElements.signInModalBox().should(\"exist\").and(\"be.visible\");",
+              "err": {},
+              "uuid": "b6e2946f-269d-4f5f-827b-ae4aedab9bc7",
+              "parentUUID": "dada2e81-50f2-4247-ac65-22003a0369e9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should not allow guest user to save search",
+              "fullTitle": "🏠 Listing Page Test Suite Should not allow guest user to save search",
+              "timedOut": null,
+              "duration": 3037,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.saveSearch();\nsharedElements.signInModalBox().should(\"exist\").and(\"be.visible\");",
+              "err": {},
+              "uuid": "1889c910-fed8-4d07-8b79-c541590b9cdb",
+              "parentUUID": "dada2e81-50f2-4247-ac65-22003a0369e9",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e9ec1e7c-bd50-4b56-9fd5-bb512e5f6f46",
+            "876f4588-b80f-48c2-992a-166246aa0db2",
+            "95b446e3-f441-4627-b771-458c49ed6f27",
+            "b6e2946f-269d-4f5f-827b-ae4aedab9bc7",
+            "1889c910-fed8-4d07-8b79-c541590b9cdb"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 39604,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "a785f5ac-fe93-4f05-864e-d12d279fee9f",
+          "title": "Listing Page - Logged-In User",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should allow the user to save search with location",
+              "fullTitle": "Listing Page - Logged-In User Should allow the user to save search with location",
+              "timedOut": null,
+              "duration": 10264,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "sharedElements.typeLocation(listingPageData.propertyLocation);\nsharedElements.saveSearch();\nsharedElements.savedSearchText().then(text => {\n  let savedSearchText = text.trim();\n  expect(savedSearchText).to.be.eq('Search saved');\n});",
+              "err": {},
+              "uuid": "de02ed97-de1f-4330-91b2-87ffae51301a",
+              "parentUUID": "a785f5ac-fe93-4f05-864e-d12d279fee9f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "de02ed97-de1f-4330-91b2-87ffae51301a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10264,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
