@@ -19,7 +19,28 @@ describe("GGMS - SIGN IN TEST SUITE", () => {
    * =============================
    */
 
-  it("✅ User should be able to login successfully", () => {
+   it(' ✅  Should send correct login request', () => {
+    cy.intercept('POST', '**/auth/login', {
+      statusCode: 200,
+      body: {
+        token: 'mocked_token_123',
+        user: {
+          email: userData.emailAddress,
+          password: userData.password,
+          rememberMe: false,
+          tokenRedirect: false
+        }
+      }
+    }).as('loginRequest');
+    signInPage.login(userData.emailAddress, userData.password)
+
+    cy.wait('@loginRequest').its('request.body').should('include', {
+      email: userData.emailAddress,
+      password: userData.password
+    });
+  });
+
+  it("✅ Should login and redirect to dashboard", () => {
     signInPage.login(userData.emailAddress, userData.password);
     cy.url().should("include", "/dashboard");
   });
