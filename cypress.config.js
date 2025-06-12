@@ -2,6 +2,11 @@ const { defineConfig } = require("cypress");
 const { allureCypress } = require("allure-cypress/reporter");
 
 module.exports = defineConfig({
+
+  retries: {
+    runMode: 2,
+    openMode: 1
+  },
   projectId: 'qnni9m',
   
   e2e: {

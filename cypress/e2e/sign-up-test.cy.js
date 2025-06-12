@@ -28,5 +28,6 @@ describe('Sign up test suit', () => {
 
 
         
-    })
+    }) ;
+
 })
