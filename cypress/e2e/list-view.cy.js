@@ -1,14 +1,11 @@
-
 import ListingPage from "../support/pages/property-list-view-page";
-import PropertySharedElements from "../support/pages/property-shared-elements"
+import PropertySharedElements from "../support/pages/property-shared-elements";
 
 const listingPage = new ListingPage(); // ✅ use const when instance doesn't change
-const sharedElements =  new PropertySharedElements();
+const sharedElements = new PropertySharedElements();
 let listingPageData;
 
 describe("🏠 Listing Page Test Suite", () => {
- 
-
   beforeEach(() => {
     // Visit the listing page before each test
     listingPage.visit();
@@ -17,7 +14,6 @@ describe("🏠 Listing Page Test Suite", () => {
     cy.fixture("listing-page-data").then((data) => {
       listingPageData = data;
     });
-    
 
     // Prevent test failure on uncaught exceptions (optional, depending on app stability)
     Cypress.on("uncaught:exception", () => false);
@@ -34,16 +30,13 @@ describe("🏠 Listing Page Test Suite", () => {
     // Wait for listings to render (consider replacing with intercept in future)
     cy.wait(2000);
 
-    sharedElements
-      .propertyAddress()
-      .each(($address) => {
-        const addressText = $address.text().toLowerCase();
-        expect(addressText).to.include(
-          listingPageData.propertyLocation.toLowerCase()
-        );
-      });
+    sharedElements.propertyAddress().each(($address) => {
+      const addressText = $address.text().toLowerCase();
+      expect(addressText).to.include(
+        listingPageData.propertyLocation.toLowerCase()
+      );
+    });
   });
-
 
   /**
    * ✅ Test: Pagination to the last page
@@ -84,72 +77,58 @@ describe("🏠 Listing Page Test Suite", () => {
       });
   });
 
-
   /**
    * ✅ Test: Favorite icon triggers login modal for guest users
    */
-   it("should show sign-in modal when a guest user tries to favorite a listing", () => {
+  it("should show sign-in modal when a guest user tries to favorite a listing", () => {
     sharedElements.clickFavoriteIcon();
 
-    sharedElements
-      .signInModalBox()
-      .should("exist")
-      .and("be.visible");
+    sharedElements.signInModalBox().should("exist").and("be.visible");
   });
 
-/**
- * ✅ Test: Save Search as a guest user
- * - Select a sort option
- * - Verify the selected value is reflected in UI
- */
+  /**
+   * ✅ Test: Save Search as a guest user
+   * - Select a sort option
+   * - Verify the selected value is reflected in UI
+   */
 
-it("Should not allow guest user to save search", () => {
-  sharedElements.saveSearch(); 
-  sharedElements.signInModalBox().
-        should("exist").
-        and("be.visible")
-})
-
-})
+  it("Should not allow guest user to save search", () => {
+    sharedElements.saveSearch();
+    sharedElements.signInModalBox().should("exist").and("be.visible");
+  });
+});
 
 /**
- * 
+ *
  */
 
-describe('Listing Page - Logged-In User', () => {
-
-beforeEach(() => {
-  cy.visitSignIn();
+describe("Listing Page - Logged-In User", () => {
+  beforeEach(() => {
+    cy.visitSignIn();
     // Load test data from fixture
-  cy.fixture("listing-page-data").then((data) => {
+    cy.fixture("listing-page-data").then((data) => {
       listingPageData = data;
     });
     // Load Login test data from fixture
-  cy.fixture("sign-in").then((data) => {
-    cy.login(data.emailAddress, data.password)
+    cy.fixture("sign-in").then((data) => {
+      cy.login(data.emailAddress, data.password);
+    });
+    cy.visit("/listings");
   });
-  cy.visit('/listings')
-  
-})
 
-
- /**
+  /**
    * ✅ Test: Save Search Successfully with location
    * - Select a location and click save search button
    * - Verify the save search success message
    */
 
-  it("Should allow the user to save search with location", () => {
+  it.only ("Should allow the user to save search with location", () => {
     sharedElements.typeLocation(listingPageData.propertyLocation);
     sharedElements.saveSearch();
-    sharedElements.savedSearchText().then(text => {
-    let  savedSearchText = text.trim()
-      expect(savedSearchText).to.be.eq('Search saved')
-    })
-  })
+    sharedElements.savedSearchText().then((text) => {
+      let savedSearchText = text.trim();
+      expect(savedSearchText).to.be.eq("Search saved");
+    });
+  });
 
-
-})
-
-  
-
+});
