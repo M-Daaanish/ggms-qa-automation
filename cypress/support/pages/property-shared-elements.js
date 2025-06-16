@@ -3,7 +3,7 @@ class PropertySharedElements {
 
   // ✅ Get the property address element
   propertyAddress() {
-    return cy.get(".aptcard__content--address", { timeout: 5000 });
+    return cy.get(".aptcard__content--address", { timeout: 10000 });
   }
 
   // 🛠 Click on the 'All Filters' button

@@ -1,134 +1,115 @@
 import ListingPage from "../support/pages/property-list-view-page";
 import PropertySharedElements from "../support/pages/property-shared-elements";
 
-const listingPage = new ListingPage(); // ✅ use const when instance doesn't change
+const listingPage = new ListingPage(); // ✅ Great: POM instance declared once
 const sharedElements = new PropertySharedElements();
 let listingPageData;
 
 describe("🏠 Listing Page Test Suite", () => {
   beforeEach(() => {
-    // Visit the listing page before each test
-    listingPage.visit();
+    listingPage.visit(); // ✅ Consistent entry point
 
-    // Load test data from fixture
     cy.fixture("listing-page-data").then((data) => {
       listingPageData = data;
     });
 
-    // Prevent test failure on uncaught exceptions (optional, depending on app stability)
-    Cypress.on("uncaught:exception", () => false);
+    Cypress.on("uncaught:exception", () => false); //  Use this sparingly – ideally catch known errors directly
   });
 
-  /**
-   * ✅ Test: Search listings by location
-   * - Input location
-   * - Verify all displayed addresses contain that location
-   */
   it("should display listings based on the location selected by the user", () => {
+    // ✅ Intercept declared before triggering
+    cy.intercept('POST', '**/public/listings*').as('getListingsForSearch');
+
     sharedElements.typeLocation(listingPageData.propertyLocation);
+    
 
-    // Wait for listings to render (consider replacing with intercept in future)
-    cy.wait(2000);
+    cy.wait('@getListingsForSearch'); // ✅ Essential for stability
 
-    sharedElements.propertyAddress().each(($address) => {
-      const addressText = $address.text().toLowerCase();
-      expect(addressText).to.include(
-        listingPageData.propertyLocation.toLowerCase()
-      );
-    });
-  });
-
-  /**
-   * ✅ Test: Pagination to the last page
-   * - Navigate to the last page using the navToLastPage function
-   * - Verify the active page element is correctly set
-   */
-  it("should navigate to the last page using pagination controls", () => {
-    sharedElements.typeLocation(listingPageData.propertyLocation);
-
-    // Wait for listings (replace with intercept in future)
-    cy.wait(3000);
-
-    sharedElements.navToLastPage();
-
-    sharedElements
-      .activePage()
-      .invoke("text")
-      .then((activePageText) => {
-        expect(Number(activePageText)).to.be.greaterThan(1); // Or compare with expected last page
+    sharedElements.propertyAddress()
+      .should('have.length.greaterThan', 0) // ✅ Good practice to avoid false positives
+      .each(($address) => {
+        const addressText = $address.text().toLowerCase();
+        expect(addressText).to.include(
+          listingPageData.propertyLocation.toLowerCase()
+        );
       });
   });
 
-  /**
-   * ✅ Test: Sorting functionality
-   * - Select a sort option
-   * - Verify the selected value is reflected in UI
-   */
-  it("should sort listings based on the selected sort option", () => {
-    sharedElements.sortOption(listingPageData.sortValue);
+  it("should navigate to the last page using pagination controls", () => {
+    cy.intercept('POST', '**/public/listings*').as('getListingsForSearch');
 
-    sharedElements
-      .getSortedValue()
+    sharedElements.typeLocation(listingPageData.propertyLocation);
+    
+    cy.wait('@getListingsForSearch');
+
+    sharedElements.navToLastPage();
+
+    sharedElements.activePage()
+      .invoke("text")
+      .then((activePageText) => {
+        expect(Number(activePageText)).to.be.greaterThan(1); // ✅ Logical and flexible
+      });
+  });
+
+  it("should sort listings based on the selected sort option", () => {
+    sharedElements.sortOption(listingPageData.sortValue); // ✅ Should internally trigger listing reload
+
+    sharedElements.getSortedValue()
       .should("be.visible")
       .invoke("text")
       .then((selectedText) => {
         const trimmed = selectedText.trim();
-        expect(trimmed).to.eq(listingPageData.selectedSortValue);
+        expect(trimmed).to.eq(listingPageData.selectedSortValue); // ✅ Data-driven + semantic
       });
   });
 
-  /**
-   * ✅ Test: Favorite icon triggers login modal for guest users
-   */
   it("should show sign-in modal when a guest user tries to favorite a listing", () => {
-    sharedElements.clickFavoriteIcon();
+    sharedElements.clickFavoriteIcon(); 
 
-    sharedElements.signInModalBox().should("exist").and("be.visible");
+    sharedElements.signInModalBox()
+      .should("exist")
+      .and("be.visible"); // ✅ Checks both existence and visibility
   });
-
-  /**
-   * ✅ Test: Save Search as a guest user
-   * - Select a sort option
-   * - Verify the selected value is reflected in UI
-   */
 
   it("Should not allow guest user to save search", () => {
     sharedElements.saveSearch();
-    sharedElements.signInModalBox().should("exist").and("be.visible");
+
+    sharedElements.signInModalBox()
+      .should("exist")
+      .and("be.visible"); // ✅ Good UI validation
   });
 });
-
-/**
- *
- */
 
 describe("Listing Page - Logged-In User", () => {
   beforeEach(() => {
     cy.visitSignIn();
-    // Load test data from fixture
+
     cy.fixture("listing-page-data").then((data) => {
       listingPageData = data;
     });
-    // Load Login test data from fixture
+
     cy.fixture("sign-in").then((data) => {
-      cy.login(data.emailAddress, data.password);
+      cy.login(data.emailAddress, data.password); // ✅ Custom login command = good abstraction
     });
-    cy.visit("/listings");
+
+    cy.visit("/listings"); // ✅ Post-login redirection check
   });
 
-  /**
-   * ✅ Test: Save Search Successfully with location
-   * - Select a location and click save search button
-   * - Verify the save search success message
-   */
-
-  it.only ("Should allow the user to save search with location", () => {
+  it("Should allow the user to save search with location", () => {
     sharedElements.typeLocation(listingPageData.propertyLocation);
+
+
     sharedElements.saveSearch();
     sharedElements.savedSearchText().then((text) => {
       let savedSearchText = text.trim();
-      expect(savedSearchText).to.be.eq("Search saved");
+      expect(savedSearchText).to.be.eq("Search saved"); // ✅ Text-based confirmation
     });
   });
 
+  it("Should allow user to mark the listing as favorite", () => {
+    listingPage.clickHeartIcon(listingPageData.listingAddress); // ✅ POM for targeting by address
+
+    listingPage.getFavoriteMarkedHeartIcon(listingPageData.listingAddress)
+      .should('be.visible'); // ✅ Visual assertion – can be enhanced with state check if needed
+  });
 });

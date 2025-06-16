@@ -2,5 +2,6 @@
    "propertyLocation": "Orlando",
    "sortValue": "priceLowToHigh", 
    "_comment": "Sort value should be : newest, recommended, priceLowToHigh, priceHighToLow, squareFeet, lotSize, pricePerSqFt",
-   "selectedSortValue": "Price (low to high)"
+   "selectedSortValue": "Price (low to high)",
+   "listingAddress": "3 guernsey lane, east brunswick, nj 08816"
 }
