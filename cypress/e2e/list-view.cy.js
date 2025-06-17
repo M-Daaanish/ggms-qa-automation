@@ -1,8 +1,10 @@
 import ListingPage from "../support/pages/property-list-view-page";
 import PropertySharedElements from "../support/pages/property-shared-elements";
+import SavedPropertiesPage from "../support/pages/saved-properties-page";
 
 const listingPage = new ListingPage(); // ✅ Great: POM instance declared once
 const sharedElements = new PropertySharedElements();
+const savedProperties = new SavedPropertiesPage()
 let listingPageData;
 
 describe("🏠 Listing Page Test Suite", () => {
@@ -106,10 +108,16 @@ describe("Listing Page - Logged-In User", () => {
     });
   });
 
-  it("Should allow user to mark the listing as favorite", () => {
+  it.only("Should allow user to mark the listing as favorite", () => {
     listingPage.clickHeartIcon(listingPageData.listingAddress); // ✅ POM for targeting by address
 
     listingPage.getFavoriteMarkedHeartIcon(listingPageData.listingAddress)
-      .should('be.visible'); // ✅ Visual assertion – can be enhanced with state check if needed
+      .should('be.visible'); 
+      cy.visit('/saved-properties');
+      savedProperties.getPrimaryList();
+      listingPage.getFavoriteMarkedHeartIcon(listingPageData.listingAddress)
+      .should('be.visible'); // 
+
+
   });
 });

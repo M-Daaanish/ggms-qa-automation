@@ -23,6 +23,9 @@ favoriteListTitle(listname) {
     return cy.get('.aptcard__content--heading > h4', {timeout: 100000}).contains({listname})
 }
 
+getPrimaryList() {
+    return cy.contains('.aptcard__tag h5', 'Primary List').click();
+}
 
 
 
