@@ -18,16 +18,17 @@ savedSearchEditMode() {
 
 // Click on saved search card
 
-savedSearchCard(title) { 
-  return cy.contains('.savecard', `${title}`).invoke('removeAttr', 'target').click()
+savedSearchFirstCard() { 
+  return cy.get('.row.saved-search').find('.col-sm-6.col-xl-4 > .savecard').first();
 }
 
 // Delete existing saved searches
 deleteSavedSearch(title) {
-  return cy.contains('.savecard', `${title}`).within(() => {
-    cy.get('.btnDelete').click();
-  })
-}
+ this.savedSearchFirstCard().as('targetedSavedSearch')
+  
+  cy.get('@targetedSavedSearch').find('.btnDelete').click();
+  }
+
 
 // Click on delete button on confirmation modal
 deleteConfirmationButton() {

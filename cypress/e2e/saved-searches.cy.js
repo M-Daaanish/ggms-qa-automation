@@ -40,7 +40,7 @@ describe("Saved Searches - Authenticated User Functionality", () => {
     cy.visit("/listings");
   });
 
-  // Ensure that user is able to see saved search in savesd search page
+  // Ensure that user is able to see saved search in saved search page
 
   it("Should allow user to save a search and view it in Saved Searches page", () => {
     sharedElements.typeLocation(listingLocation.orlando);
@@ -50,5 +50,13 @@ describe("Saved Searches - Authenticated User Functionality", () => {
       const normalized = text.replace(/\s+/g, " ").trim();
       expect(normalized).to.include(listingLocation.orlando);
     });
+  });
+
+  // Ensure that user can delete the saved searches
+  it.only("Should allow user to delete the saved search", () => {
+    cy.visit("/saved-searches");
+
+    savedSearchPage.deleteSavedSearch("Property Type: House");
+    savedSearchPage.deleteConfirmationButton();
   });
 });
