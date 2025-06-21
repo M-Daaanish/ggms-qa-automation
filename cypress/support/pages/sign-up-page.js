@@ -22,11 +22,11 @@ password(password) {
 }
 
 agreementCheckBox() {
-    return cy.get('.form__checkbox > label').find('.form__checkmark').click();
+    return cy.get('.form__cbcontainer > label').find('.form__checkmark').click();
 }
 
 createAccountBtn() {
-    return cy.get('#register-btn').click();
+    return cy.get('#register-btn');
 }
 
 resendEmailBtn() {

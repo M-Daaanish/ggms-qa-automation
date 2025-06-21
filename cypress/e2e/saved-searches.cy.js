@@ -53,7 +53,7 @@ describe("Saved Searches - Authenticated User Functionality", () => {
   });
 
   // Ensure that user can delete the saved searches
-  it.only("Should allow user to delete the saved search", () => {
+  it("Should allow user to delete the saved search", () => {
     cy.visit("/saved-searches");
 
     savedSearchPage.deleteSavedSearch("Property Type: House");

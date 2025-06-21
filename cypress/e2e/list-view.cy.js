@@ -108,7 +108,7 @@ describe("Listing Page - Logged-In User", () => {
     });
   });
 
-  it.only("Should allow user to mark the listing as favorite", () => {
+  it("Should allow user to mark the listing as favorite", () => {
     listingPage.clickHeartIcon(listingPageData.listingAddress); // ✅ POM for targeting by address
 
     listingPage.getFavoriteMarkedHeartIcon(listingPageData.listingAddress)

@@ -36,3 +36,34 @@ Cypress.Commands.add('login', (email, password) => {
 Cypress.Commands.add('visitSignIn', () => {
     cy.visit('/sign-in')
 })
+
+// Generate random email address to create an account
+
+Cypress.Commands.add('generateRandomEmail', () => {
+    const upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowerChars = 'abcdefghijklmnopqrstuvwxyz';
+    const digits = '0123456789';
+    const specialChars = '!@#$%^&*';
+    const allChars = upperChars + lowerChars + digits + specialChars;
+  
+    const getRandomChar = (str) => str[Math.floor(Math.random() * str.length)];
+  
+    // Ensure required characters
+    const required = [
+      getRandomChar(upperChars),
+      getRandomChar(digits),
+      getRandomChar(specialChars)
+    ];
+  
+    // Fill the rest (8 total before the @)
+    while (required.length < 8) {
+      required.push(getRandomChar(allChars));
+    }
+  
+    // Shuffle the characters
+    const shuffled = required.sort(() => 0.5 - Math.random()).join('');
+  
+    const email = `${shuffled}@test.com`;
+    return email;
+  });
+  
