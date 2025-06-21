@@ -1,0 +1,16 @@
+version: 2.1
+
+orbs:
+  cypress: cypress-io/cypress@4  # Use the latest 4.x Orb version
+
+workflows:
+  test-e2e:
+    jobs:
+      - cypress/run:
+          start-command: "npm run start"     # Adjust if your app starts differently
+          cypress-command: "npx cypress run" # or use your defined npm script
+          install-browsers: true             # install all browsers
+          # Optional: for parallelization & recording
+          # parallelism: 2
+          # record: true
+          # group: "e2e tests"
