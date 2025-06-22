@@ -11,35 +11,12 @@ jobs:
     executor: cypress-executor
     steps:
       - checkout
-
       - run:
           name: Install dependencies
           command: npm install
-
       - run:
-          name: Run Cypress tests with Allure
-          command: |
-            export NODE_OPTIONS=--max_old_space_size=4096
-            npx cypress run --reporter cypress-allure-plugin --reporter-options allure=true
-
-      - run:
-          name: Generate Allure report
-          command: |
-            npm install -g allure-commandline --save-dev
-            allure generate ./allure-results --clean -o ./allure-report
-
-      # Optional: Save videos and screenshots from Cypress
-      - store_artifacts:
-          path: cypress/videos
-          destination: videos
-
-      - store_artifacts:
-          path: cypress/screenshots
-          destination: screenshots
-
-      - store_artifacts:
-          path: allure-report
-          destination: allure-report
+          name: Run Cypress tests
+          command: npx cypress run
 
 workflows:
   run-tests:
