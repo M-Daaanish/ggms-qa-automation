@@ -17,6 +17,19 @@ jobs:
       - run:
           name: Run Cypress tests
           command: npx cypress run
+      - run:
+          name: Slack Notification
+          command: |
+            if [ "$CYPRESS_FAILED" = "true" ]; then
+              STATUS=":x: Tests failed on branch *${CIRCLE_BRANCH}* by *${CIRCLE_USERNAME}*. <${CIRCLE_BUILD_URL}|View build>"
+            else
+              STATUS=":white_check_mark: Tests passed on branch *${CIRCLE_BRANCH}* by *${CIRCLE_USERNAME}*. <${CIRCLE_BUILD_URL}|View build>"
+            fi
+
+            curl -X POST -H 'Content-type: application/json' \
+            --data "{\"text\": \"$STATUS\"}" $SLACK_WEBHOOK_URL
+          environment:
+            SLACK_WEBHOOK_URL: $SLACK_WEBHOOK_URL
 
 workflows:
   run-tests:
