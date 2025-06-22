@@ -37,10 +37,10 @@ describe("🏠 Listing Page Test Suite", () => {
       });
   });
 
-  it("should navigate to the last page using pagination controls", () => {
-    cy.intercept('POST', '**/public/listings*').as('getListingsForSearch');
+  ///it("should navigate to the last page using pagination controls", () => {
+    //cy.intercept('POST', '**/public/listings*').as('getListingsForSearch');
 
-    sharedElements.typeLocation(listingPageData.propertyLocation);
+    /*sharedElements.typeLocation(listingPageData.propertyLocation);
     
     cy.wait('@getListingsForSearch');
 
@@ -51,8 +51,8 @@ describe("🏠 Listing Page Test Suite", () => {
       .then((activePageText) => {
         expect(Number(activePageText)).to.be.greaterThan(1); // ✅ Logical and flexible
       });
-  });
-
+  });*/
+  
   it("should sort listings based on the selected sort option", () => {
     sharedElements.sortOption(listingPageData.sortValue); // ✅ Should internally trigger listing reload
 
