@@ -11,6 +11,9 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy: 
+     matrix: 
+      shard_index: [0,1]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -43,4 +46,11 @@ jobs:
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          
+      - name: Run sharded Cypress specs
+        run: |
+          FILES=$(find cypress/e2e -name "*.cy.js" | sort | awk "NR%2==${{ matrix.shard_index }}")
+          echo "Running specs:"
+          echo "$FILES"
+          npx cypress run --spec "$FILES"
 
