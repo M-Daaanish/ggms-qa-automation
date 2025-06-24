@@ -46,11 +46,10 @@ jobs:
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          
+
       - name: Run sharded Cypress specs
         run: |
-          FILES=$(find cypress/e2e -name "*.cy.js" | sort | awk "NR%2==${{ matrix.shard_index }}")
-          echo "Running specs:"
-          echo "$FILES"
+          FILES=$(find cypress/e2e -name "*.cy.js" | sort | awk "NR%2==${{ matrix.shard_index }}" | paste -sd, -)
+          echo "Running specs: $FILES"
           npx cypress run --spec "$FILES"
 
