@@ -12,8 +12,9 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     strategy: 
-     matrix: 
-      shard_index: [0,1]
+      matrix: 
+        shard_index: [0,1]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,8 +27,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests with Mochawesome reporter
-        run: npx cypress run --reporter mochawesome
+      - name: Run sharded Cypress specs with Mochawesome
+        run: |
+          FILES=$(find cypress/e2e -name "*.cy.js" | sort | awk "NR % 2 == ${{ matrix.shard_index }}" | paste -sd, -)
+          echo "Running specs for shard ${{ matrix.shard_index }}:"
+          echo "$FILES"
+          npx cypress run --reporter mochawesome --spec "$FILES"
 
       - name: Slack Notification (Success)
         if: success()
@@ -46,10 +51,3 @@ jobs:
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Run sharded Cypress specs
-        run: |
-          FILES=$(find cypress/e2e -name "*.cy.js" | sort | awk "NR%2==${{ matrix.shard_index }}" | paste -sd, -)
-          echo "Running specs: $FILES"
-          npx cypress run --spec "$FILES"
-
