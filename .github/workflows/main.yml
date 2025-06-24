@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy: 
       matrix: 
-        shard_index: [0,1]
+        shard_index: [0, 1]
 
     steps:
       - name: Checkout repository
@@ -38,7 +38,7 @@ jobs:
         if: success()
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\": \":white_check_mark: Tests passed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>\"}" \
+          --data "{\"text\": \":white_check_mark: *Shard ${{ matrix.shard_index }}* tests passed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\"}" \
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -47,7 +47,7 @@ jobs:
         if: failure()
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\": \":x: Tests failed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>\"}" \
+          --data "{\"text\": \":x: *Shard ${{ matrix.shard_index }}* tests failed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\"}" \
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
