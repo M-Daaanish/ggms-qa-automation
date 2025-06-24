@@ -17,13 +17,14 @@ jobs:
           name: Install dependencies
           command: npm install
 
-      - run:
-          name: Run Cypress tests in parallel
-          command: |
-            TESTFILES=$(circleci tests glob "cypress/e2e/**/*.cy.js" | circleci tests split)
-            echo "Running test files:"
-            echo "$TESTFILES"
-            npx cypress run --spec "$TESTFILES"
+    - run:
+     name: Run Cypress tests in parallel
+     command: |
+       TESTFILES=$(circleci tests glob "cypress/e2e/**/*.cy.js" | circleci tests split)
+       echo "Running test files:"
+       echo "$TESTFILES"
+       npx cypress run --spec $(echo $TESTFILES | paste -sd, -)
+
 
 workflows:
   version: 2
