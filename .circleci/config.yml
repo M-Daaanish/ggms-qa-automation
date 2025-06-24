@@ -9,7 +9,7 @@ executors:
 jobs:
   test:
     executor: cypress-executor
-    parallelism: 4  
+    parallelism: 4
     steps:
       - checkout
 
@@ -17,14 +17,13 @@ jobs:
           name: Install dependencies
           command: npm install
 
-    - run:
-     name: Run Cypress tests in parallel
-     command: |
-       TESTFILES=$(circleci tests glob "cypress/e2e/**/*.cy.js" | circleci tests split)
-       echo "Running test files:"
-       echo "$TESTFILES"
-       npx cypress run --spec $(echo $TESTFILES | paste -sd, -)
-
+      - run:
+          name: Run Cypress tests in parallel
+          command: |
+            TESTFILES=$(circleci tests glob "cypress/e2e/**/*.cy.js" | circleci tests split)
+            SPECS=$(echo "$TESTFILES" | paste -sd, -)
+            echo "Running specs: $SPECS"
+            npx cypress run --spec "$SPECS"
 
 workflows:
   version: 2

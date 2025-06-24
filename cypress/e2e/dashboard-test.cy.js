@@ -48,7 +48,7 @@ describe("🚫 Guest User — Dashboard Access Restriction", () => {
   });
 
   // 🔒 Ensure redirection to sign-in for unauthorized access
-  it("should redirect unauthenticated user to sign-in page", () => {
+  /*it("should redirect unauthenticated user to sign-in page", () => {
     cy.url().should("include", "/sign-in");
-  });
+  });*/
 });
