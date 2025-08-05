@@ -1,4 +1,4 @@
-import SignInPage from "../support/pages/sign-in-page";
+import SignInPage from "../../support/pages/sign-in-page";
 
 // 🧪 Test suite for Sign-In functionality
 describe("GGMS - SIGN IN TEST SUITE", () => {

@@ -1,4 +1,4 @@
-import Signup from "../support/pages/sign-up-page";
+import Signup from "../../support/pages/sign-up-page";
 
 const signup = new Signup(); // ✅ Page Object instantiation
 let signupData;

@@ -1,6 +1,6 @@
 // Importing Page Objects to separate UI logic for reusability and maintainability
-import MapPage from "../support/pages/property-map-view-page";
-import PropertySharedElements from "../support/pages/property-shared-elements";
+import MapPage from "../../support/pages/publicPages/property-map-view-page";
+import PropertySharedElements from "../../support/pages/publicPages/property-shared-elements";
 
 // Instantiating Page Object classes
 const sharedElements = new PropertySharedElements();

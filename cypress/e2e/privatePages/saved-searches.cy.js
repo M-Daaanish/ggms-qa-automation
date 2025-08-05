@@ -10,9 +10,9 @@
  *
  */
 
-import PropertySharedElements from "../support/pages/property-shared-elements";
-import SavedSearchesPage from "../support/pages/saved-searches-page";
-import Dashboard from "../support/pages/dashboard-page";
+import PropertySharedElements from "../../support/pages/publicPages/property-shared-elements";
+import SavedSearchesPage from "../../support/pages/privatePages/saved-searches-page";
+import Dashboard from "../../support/pages/privatePages/dashboard-page";
 
 const sharedElements = new PropertySharedElements();
 const savedSearchPage = new SavedSearchesPage();

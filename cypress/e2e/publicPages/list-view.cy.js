@@ -1,6 +1,6 @@
-import ListingPage from "../support/pages/property-list-view-page";
-import PropertySharedElements from "../support/pages/property-shared-elements";
-import SavedPropertiesPage from "../support/pages/saved-properties-page";
+import ListingPage from "../../support/pages/publicPages/property-list-view-page";
+import PropertySharedElements from "../../support/pages/publicPages/property-shared-elements";
+import SavedPropertiesPage from "../../support/pages/privatePages/saved-properties-page";
 
 const listingPage = new ListingPage(); // ✅ Great: POM instance declared once
 const sharedElements = new PropertySharedElements();

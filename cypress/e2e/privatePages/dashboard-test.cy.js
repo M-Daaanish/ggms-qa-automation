@@ -1,4 +1,4 @@
-import Dashboard from "../support/pages/dashboard-page";
+import Dashboard from "../../support/pages/privatePages/dashboard-page";
 
 // 📘 Instantiate the Dashboard page object
 const dashboardPage = new Dashboard();

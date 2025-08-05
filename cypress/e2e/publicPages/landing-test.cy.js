@@ -1,4 +1,4 @@
-import LandingPage from "../support/pages/landing-page";
+import LandingPage from "../../support/pages/publicPages/landing-page";
 
 describe("Landing page test suite", () => {
   const landingPage = new LandingPage();
