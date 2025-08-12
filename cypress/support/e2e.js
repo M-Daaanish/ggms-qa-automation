@@ -16,6 +16,8 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import "allure-cypress";
+// cypress/support/e2e.js
+import "@chromatic-com/cypress/support";
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false prevents Cypress from failing the test

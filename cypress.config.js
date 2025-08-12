@@ -1,5 +1,6 @@
 const { defineConfig } = require("cypress");
 const { allureCypress } = require("allure-cypress/reporter");
+const { installPlugin } = require("@chromatic-com/cypress");
 
 module.exports = defineConfig({
 
@@ -13,6 +14,7 @@ module.exports = defineConfig({
 
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      installPlugin(on, config);
      
       
       allureCypress(on, config, {

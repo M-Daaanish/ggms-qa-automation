@@ -1,0 +1,1 @@
+import{b as o}from"./route-block-B_A1xBdJ.js";import{_ as c,r as t,o as n,c as s}from"./index-DBhY06dt.js";const e={};function _(a,f){const r=t("router-view");return n(),s(r)}typeof o=="function"&&o(e);const m=c(e,[["render",_]]);export{m as default};
