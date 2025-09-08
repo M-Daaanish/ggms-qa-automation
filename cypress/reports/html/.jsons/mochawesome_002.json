@@ -1,0 +1,129 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-09-08T08:05:49.514Z",
+    "end": "2025-09-08T08:05:50.499Z",
+    "duration": 985,
+    "testsRegistered": 2,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 1,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "f20bcba3-5c66-4ede-9731-9d6b313b03f3",
+      "title": "",
+      "fullFile": "cypress/e2e/publicPages/landing-test.cy.js",
+      "file": "cypress/e2e/publicPages/landing-test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d484e739-1958-44b7-ab67-4d260e7f5b88",
+          "title": "Landing page test suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify user can see advance search widget on landing page",
+              "fullTitle": "Landing page test suite Verify user can see advance search widget on landing page",
+              "timedOut": null,
+              "duration": 141,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "landingPage.advanceSearchWidget().should(\"be.visible\");",
+              "err": {
+                "message": "CypressError: `cy.task('prepareArchives')` failed with the following error:\n\nThe task 'prepareArchives' was not handled in the setupNodeEvents method. The following tasks are registered: reportAllureCypressSpecMessages, reportFinalAllureCypressSpecMessages\n\nFix this in your setupNodeEvents method here:\n/Users/apple/Desktop/ggmsTestAutomation/cypress.config.js\n\nhttps://on.cypress.io/api/task\n\nBecause this error occurred during a `after each` hook we are skipping all of the remaining tests.",
+                "estack": "CypressError: `cy.task('prepareArchives')` failed with the following error:\n\nThe task 'prepareArchives' was not handled in the setupNodeEvents method. The following tasks are registered: reportAllureCypressSpecMessages, reportFinalAllureCypressSpecMessages\n\nFix this in your setupNodeEvents method here:\n/Users/apple/Desktop/ggmsTestAutomation/cypress.config.js\n\nhttps://on.cypress.io/api/task\n\nBecause this error occurred during a `after each` hook we are skipping all of the remaining tests.\n    at <unknown> (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:135843:72)\n    at tryCatcher (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1667:18)\n    at _drainQueueStep (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:2377:12)\n    at _drainQueue (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:2370:9)\n    at Async._drainQueues (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:2386:5)\n    at Async.drainQueues (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:2256:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://ggmstestautomation/./node_modules/@chromatic-com/cypress/dist/support.js:5:1844)\n    at getRet (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:118318:20)\n    at tryCatcher (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:118329:66)\n    at Context.then (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:118580:21)\n    at wrapped (https://mergestack-com.site-dev.ggms.com/__cypress/runner/cypress_runner.js:138827:19)",
+                "diff": null
+              },
+              "uuid": "2a04f7eb-2a43-4f7f-bd0b-e852862bf5b1",
+              "parentUUID": "d484e739-1958-44b7-ab67-4d260e7f5b88",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify user navigation on location selection",
+              "fullTitle": "Landing page test suite Verify user navigation on location selection",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "landingPage.typeLocation(landingPageTestData.propertyLocation);\ncy.url().should(\"include\", `/listings/city/${landingPageTestData.propertyLocation}`);",
+              "err": {},
+              "uuid": "ba73b2cc-2aa4-4675-b3a5-1f1ce4ebe122",
+              "parentUUID": "d484e739-1958-44b7-ab67-4d260e7f5b88",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "2a04f7eb-2a43-4f7f-bd0b-e852862bf5b1"
+          ],
+          "pending": [],
+          "skipped": [
+            "ba73b2cc-2aa4-4675-b3a5-1f1ce4ebe122"
+          ],
+          "duration": 141,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
