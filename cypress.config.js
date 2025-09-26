@@ -23,7 +23,7 @@ module.exports = defineConfig({
       return config;
     },
     
-      "baseUrl": "https://mergestack-com.site-dev.ggms.com/",
+      "baseUrl": "https://forge-com.site-dev.ggms.com",
       "viewportWidth": 1920,
       "viewportHeight": 1080,
       "video": true,

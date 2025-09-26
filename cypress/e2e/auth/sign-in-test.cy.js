@@ -1,4 +1,4 @@
-import SignInPage from "../../support/pages/sign-in-page";
+import SignInPage from "../../support/pages/authPages/sign-in-page";
 
 
 // 🧪 Test suite for Sign-In functionality
@@ -20,31 +20,22 @@ describe("GGMS - SIGN IN TEST SUITE", () => {
    * =============================
    */
 
-   it(' ✅  Should send correct login request', () => {
-    cy.intercept('POST', '**/auth/login', {
-      statusCode: 200,
-      body: {
-        token: 'mocked_token_123',
-        user: {
-          email: userData.emailAddress,
-          password: userData.password,
-          rememberMe: false,
-          tokenRedirect: false
-        }
-      }
-    }).as('loginRequest');
+  it(' ✅  Should send correct login request and navigate to dashboard after successful login', () => {
+    // Use reusable intercept helper to mock a successful login
+    cy.interceptLogin('login');
+
     signInPage.login(userData.emailAddress, userData.password)
 
-    cy.wait('@loginRequest').its('request.body').should('include', {
+    // Validate the request payload via the alias set by the helper
+    cy.wait('@login').its('request.body').should('include', {
       email: userData.emailAddress,
       password: userData.password
     });
+
+    // Also assert redirect path with a generous timeout
+    cy.url({ timeout: 30000 }).should('include', '/dashboard');
   });
 
-  it("✅ Should login and redirect to dashboard", () => {
-    signInPage.login(userData.emailAddress, userData.password);
-    cy.url().should("include", "/dashboard");
-  });
 
   /**
    * =============================

@@ -6,19 +6,19 @@ class Signup {
     }
 
 firstname(fname) {
-    cy.get('input[placeholder="First Name"]').type(fname)
+    cy.get('input[name="ShortTextElement_item_1"]').type(fname)
 }
 
 lastname(lname) {
-    cy.get('input[placeholder="Last Name"]').type(lname)
+    cy.get('input[name="ShortTextElement_item_2"]').type(lname)
 }
 
 email(emailAddress) { 
-    cy.get('input[placeholder="Email"]').type(emailAddress)
+    cy.get('.EmailElement_item_1').type(emailAddress)
 }
 
 password(password) {
-    cy.get('input[placeholder="Password"]').type(password)
+    cy.get('.PasswordElement_item_3').type(password)
 }
 
 agreementCheckBox() {
@@ -26,7 +26,7 @@ agreementCheckBox() {
 }
 
 createAccountBtn() {
-    return cy.get('#register-btn');
+    return cy.get('.btnPrimary');
 }
 
 resendEmailBtn() {

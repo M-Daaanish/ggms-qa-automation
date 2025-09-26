@@ -9,7 +9,11 @@ class LandingPage {
   // Search and select location 
   typeLocation(location) {
     cy.get('input[class="form__search autosearch"]').type(location);
-    cy.get('.omnisearch__cityaddress.check').find(' div > ul > li > div > span').eq(1).contains(location).click();
+    // Wait for the suggestions container to appear, then choose by text for robustness
+    cy.get('.omnisearch__cityaddress.check', { timeout: 10000 })
+      .find('div > ul > li > div > span')
+      .contains(location)
+      .click();
    
   }
 

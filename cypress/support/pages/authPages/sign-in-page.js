@@ -34,7 +34,7 @@ class SignInPage {
   
     // 🔗 "Forgot Password" link
     getForgotPasswordLink() {
-      return cy.get('.btnrecover');
+      return cy.get('#recover-password-btn');
     }
   
     // 👁️ Password visibility toggle (eye icon)
@@ -44,7 +44,7 @@ class SignInPage {
   
     // 🔐 Google OAuth login button
     getGoogleAccountButton() {
-      return cy.get('#google_oauth');
+      return cy.get('.btnSocial');
     }
   
     /**

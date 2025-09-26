@@ -67,3 +67,14 @@ Cypress.Commands.add('generateRandomEmail', () => {
     return email;
   });
   
+// ---- Reusable network intercept helpers ----
+import { intercepts } from './intercepts';
+
+Cypress.Commands.add('interceptLogin', (alias = 'login') => {
+  intercepts.auth.interceptLogin(alias);
+});
+
+Cypress.Commands.add('mockLoginSuccess', (alias = 'login', user = {}) => {
+  intercepts.auth.mockLoginSuccess(alias, user);
+});
+  
