@@ -9,12 +9,12 @@ class SignInPage {
   
     // 📧 Email input field
     getUsernameField() {
-      return cy.get('input[type="email"]')
+      return cy.get('#email')
     }
   
     // 🔒 Password input field
     getPasswordField() {
-      return cy.get('input[placeholder="Password"]');
+      return cy.get('#password');
     }
   
     // 🔘 Login button

@@ -77,4 +77,12 @@ Cypress.Commands.add('interceptLogin', (alias = 'login') => {
 Cypress.Commands.add('mockLoginSuccess', (alias = 'login', user = {}) => {
   intercepts.auth.mockLoginSuccess(alias, user);
 });
+
+// Load fixtures file for a specific file dynamically
+
+Cypress.Commands.add('loadFixture', (fileName) => {
+  const currentEnv = Cypress.env('ENV') || 'dev' // default to dev if not provided
+  return cy.fixture(`${currentEnv}/${fileName}`)
+})
+
   

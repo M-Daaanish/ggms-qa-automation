@@ -38,10 +38,10 @@ describe("Saved Searches - Guest User Access", () => {
 describe("Saved Searches - Authenticated User Functionality", () => {
   beforeEach(() => {
     cy.visitSignIn();
-    cy.fixture("sign-in").then((data) => {
+    cy.loadFixture("sign-in").then((data) => {
       cy.login(data.emailAddress, data.password);
     });
-    cy.fixture("location").then((data) => {
+    cy.loadFixture("location").then((data) => {
       listingLocation = data;
     });
     cy.visit("/listings");

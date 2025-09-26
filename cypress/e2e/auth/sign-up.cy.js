@@ -10,7 +10,7 @@ describe("Sign up test suite", () => {
     cy.visit("/sign-up");
 
     // Load fixture data from sign-up-form-data.json
-    cy.fixture("sign-up-form-data").then((data) => {
+    cy.loadFixture("sign-up-form-data").then((data) => {
       signupData = data;
     });
   });

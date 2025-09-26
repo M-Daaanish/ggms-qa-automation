@@ -8,7 +8,7 @@ describe("👤 Authenticated User — Dashboard Test Suite", () => {
   // 🔐 Log in before each test using fixture data and custom command
   beforeEach(() => {
     cy.visit("/sign-in");
-    cy.fixture("sign-in").then((data) => {
+    cy.loadFixture("sign-in").then((data) => {
       cy.login(data.emailAddress, data.password);
     });
     // Assert login succeeded by checking dashboard access
@@ -18,7 +18,7 @@ describe("👤 Authenticated User — Dashboard Test Suite", () => {
 
   // 🧾 Validate displayed user name
   it("should display the correct user name on the dashboard", () => {
-    cy.fixture("sign-in").then(() => {
+    cy.loadFixture("sign-in").then(() => {
       // Relax assertion to allow surrounding text/whitespace
       dashboardPage.getUserName().invoke("text").then((t) => {
         const normalized = t.replace(/\s+/g, " ").trim();

@@ -9,7 +9,7 @@ describe("Landing page test suite", () => {
     landingPage.visit();
 
     // Load test data from fixture file
-    cy.fixture("landing-page-data").then((testData) => {
+    cy.loadFixture("landing-page-data").then((testData) => {
       landingPageTestData = testData;
     });
   });

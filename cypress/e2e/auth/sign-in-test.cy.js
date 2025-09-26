@@ -9,7 +9,7 @@ describe("GGMS - SIGN IN TEST SUITE", () => {
   // Load fixture & visit sign-in before each test
   beforeEach(() => {
     signInPage.visit();
-    cy.fixture("sign-in").then((data) => {
+    cy.loadFixture("sign-in").then((data) => {
       userData = data;
     });
   });
