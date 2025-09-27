@@ -1,32 +1,29 @@
 version: 2.1
 
-executors:
-  cypress-executor:
-    docker:
-      - image: cypress/included:13.7.3
-    working_directory: ~/repo
+parameters:
+  env:
+    type: string
+    default: "dev"   # default value if none is selected
 
 jobs:
-  test:
-    executor: cypress-executor
-    parallelism: 4
+  cypress-run:
+    docker:
+      - image: cypress/browsers:latest
     steps:
       - checkout
-
       - run:
-          name: Install dependencies
-          command: npm install
-
+          name: Install Dependencies
+          command: npm ci
       - run:
-          name: Run Cypress tests in parallel
+          name: Run Cypress Tests
           command: |
-            TESTFILES=$(circleci tests glob "cypress/e2e/**/*.cy.js" | circleci tests split)
-            SPECS=$(echo "$TESTFILES" | paste -sd, -)
-            echo "Running specs: $SPECS"
-            npx cypress run --spec "$SPECS"
+            if [ "<< pipeline.parameters.env >>" = "prod" ]; then
+              npx cypress run --config-file cypress.config.prod.js
+            else
+              npx cypress run --config-file cypress.config.dev.js
+            fi
 
 workflows:
-  version: 2
-  run-tests:
+  cypress_workflow:
     jobs:
-      - test
+      - cypress-run

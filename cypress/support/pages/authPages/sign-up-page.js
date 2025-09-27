@@ -14,11 +14,11 @@ lastname(lname) {
 }
 
 email(emailAddress) { 
-    cy.get('.EmailElement_item_1').type(emailAddress)
+    cy.get('#EmailElement_item_1').type(emailAddress)
 }
 
 password(password) {
-    cy.get('.PasswordElement_item_3').type(password)
+    cy.get('#PasswordElement_item_2').type(password)
 }
 
 agreementCheckBox() {

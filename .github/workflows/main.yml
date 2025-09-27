@@ -11,43 +11,56 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    strategy: 
-      matrix: 
+    strategy:
+      # ✅ Matrix runs all combinations: 2 environments × 2 shards = 4 parallel jobs
+      matrix:
+        environment: [dev, prod]
         shard_index: [0, 1]
 
     steps:
+      # ✅ Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # ✅ Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
+      # ✅ Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci   # Faster & deterministic installs
 
-      - name: Run sharded Cypress specs with Mochawesome
+      # ✅ Run Cypress tests (sharded by matrix)
+      - name: Run Cypress tests (Env: ${{ matrix.environment }} | Shard: ${{ matrix.shard_index }})
         run: |
+          echo "Running Cypress for environment: ${{ matrix.environment }}"
           FILES=$(find cypress/e2e -name "*.cy.js" | sort | awk "NR % 2 == ${{ matrix.shard_index }}" | paste -sd, -)
-          echo "Running specs for shard ${{ matrix.shard_index }}:"
+          echo "Specs for shard ${{ matrix.shard_index }}:"
           echo "$FILES"
-          npx cypress run --reporter mochawesome --spec "$FILES"
+          npx cypress run \
+            --reporter mochawesome \
+            --env ENV=${{ matrix.environment }} \
+            --config-file cypress.config.${{ matrix.environment }}.js \
+            --spec "$FILES"
 
+      # ✅ Slack notification on success
       - name: Slack Notification (Success)
         if: success()
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\": \":white_check_mark: *Shard ${{ matrix.shard_index }}* tests passed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\"}" \
+          --data "{\"text\": \":white_check_mark: *${{ matrix.environment }} - Shard ${{ matrix.shard_index }}* tests passed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\"}" \
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
+      # ✅ Slack notification on failure
       - name: Slack Notification (Failure)
         if: failure()
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\": \":x: *Shard ${{ matrix.shard_index }}* tests failed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\"}" \
+          --data "{\"text\": \":x: *${{ matrix.environment }} - Shard ${{ matrix.shard_index }}* tests failed on \`${{ github.ref_name }}\` by *${{ github.actor }}*. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\"}" \
           $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
